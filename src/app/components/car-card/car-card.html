@@ -1,0 +1,36 @@
+<article class="card" [class.sold]="isSold">
+  <div class="photo">
+    <img [src]="'images/' + auto.photo" [alt]="auto.brand + ' ' + auto.model">
+    @if (isSold) {
+      <span class="stamp">{{ t.soldStamp }}</span>
+    }
+  </div>
+
+  <div class="body">
+    <p class="brand">{{ auto.brand }}</p>
+    <h3 class="model">{{ auto.model }}</h3>
+
+    <dl class="specs">
+      <div>
+        <dt>{{ t.power }}</dt>
+        <dd>{{ auto.power }} {{ t.powerUnit }}</dd>
+      </div>
+      <div>
+        <dt>{{ t.price }}</dt>
+        <dd>{{ t.formatPrice(auto.price) }}</dd>
+      </div>
+    </dl>
+
+    <p class="stock" [class.low]="isLowStock" [class.out]="isSold">
+      @if (isSold) {
+        {{ t.soldOut }}
+      } @else if (isLowStock) {
+        {{ t.onlyLeft(auto.availability) }}
+      } @else {
+        {{ t.inStock(auto.availability) }}
+      }
+    </p>
+
+    <button type="button" (click)="onViewDetails()">{{ t.viewDetails }}</button>
+  </div>
+</article>

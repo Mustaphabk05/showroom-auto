@@ -1,0 +1,107 @@
+<header class="header-bar">
+  <!-- Intro: a modern car drives across the header once, when the page loads -->
+  <svg class="intro-car" viewBox="0 0 420 104" aria-hidden="true">
+    <defs>
+      <linearGradient id="paint" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" />
+        <stop offset="0.55" stop-color="#e4e8ee" />
+        <stop offset="1" stop-color="#9aa4b3" />
+      </linearGradient>
+      <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2b3a55" />
+        <stop offset="1" stop-color="#0b1220" />
+      </linearGradient>
+      <linearGradient id="beam" x1="0" x2="1">
+        <stop offset="0" stop-color="#fff4d6" stop-opacity="0.85" />
+        <stop offset="1" stop-color="#fff4d6" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    <!-- speed lines -->
+    <g class="speed">
+      <line x1="0" y1="40" x2="22" y2="40" />
+      <line x1="8" y1="54" x2="28" y2="54" />
+      <line x1="2" y1="66" x2="20" y2="66" />
+    </g>
+
+    <!-- shadow on the road -->
+    <ellipse class="shadow" cx="190" cy="99" rx="152" ry="4.5" />
+
+    <!-- headlight beam -->
+    <polygon points="337,55 420,42 420,72 337,59" fill="url(#beam)" />
+
+    <!-- dark inside of the wheel arches -->
+    <path class="arch" d="M72 78 A23 23 0 0 1 118 78 Z M262 78 A23 23 0 0 1 308 78 Z" />
+
+    <!-- body -->
+    <path fill="url(#paint)" d="M48 78 Q40 78 40 70 L41 54 Q42 46 48 43 L56 40 Q62 37 68 30
+      L80 20 Q92 13 112 12 Q168 10 200 13 Q214 15 226 23 L254 40 Q260 43 272 44 L318 48
+      Q334 51 338 60 L340 70 Q340 78 332 78 L308 78 A23 23 0 0 0 262 78
+      L118 78 A23 23 0 0 0 72 78 Z" />
+
+    <!-- glass: one dark band, like a panoramic roof -->
+    <path fill="url(#glass)" d="M72 38 L86 24 Q96 17 114 16 Q166 14 198 17 Q209 18 218 25 L244 39
+      Q180 40.5 110 40 Z" />
+    <rect class="pillar" x="144" y="14" width="5" height="27" />
+
+    <!-- details -->
+    <path class="trim" d="M118 73 L262 73 L262 78 L118 78 Z" />
+    <path class="trim" d="M40 66 L52 68 L50 78 L48 78 Q40 78 40 70 Z" />
+    <path class="trim" d="M322 70 L340 68 L340 70 Q340 78 332 78 L318 78 Z" />
+    <path class="highlight" d="M74 49 Q190 44 316 51" />
+    <path class="door" d="M146 41 L148 72 M226 41 L230 71" />
+    <rect class="handle" x="118" y="47" width="12" height="2.5" rx="1.25" />
+    <rect class="handle" x="196" y="47" width="12" height="2.5" rx="1.25" />
+    <path class="mirror" d="M238 38 L250 37 Q254 38 252 42 L242 42 Z" />
+
+    <!-- full-width LED lights -->
+    <path class="led" d="M314 49 L337 56" />
+    <path class="tail" d="M41 52 L56 47" />
+
+    <!-- wheels with aero rims (they spin while the car drives) -->
+    <path class="caliper" d="M84 74 A12 12 0 0 1 91 67" />
+    <g class="wheel">
+      <circle class="tire" cx="95" cy="78" r="20" />
+      <circle class="rim" cx="95" cy="78" r="14" />
+      <path class="spokes" d="M108.0 78.0 L82.0 78.0 M105.5 85.6 L84.5 70.4 M99.0 90.4 L91.0 65.6 M91.0 90.4 L99.0 65.6 M84.5 85.6 L105.5 70.4" />
+      <circle class="hub" cx="95" cy="78" r="3.5" />
+    </g>
+    <path class="caliper" d="M274 74 A12 12 0 0 1 281 67" />
+    <g class="wheel">
+      <circle class="tire" cx="285" cy="78" r="20" />
+      <circle class="rim" cx="285" cy="78" r="14" />
+      <path class="spokes" d="M298.0 78.0 L272.0 78.0 M295.5 85.6 L274.5 70.4 M289.0 90.4 L281.0 65.6 M281.0 90.4 L289.0 65.6 M274.5 85.6 L295.5 70.4" />
+      <circle class="hub" cx="285" cy="78" r="3.5" />
+    </g>
+  </svg>
+
+  <div class="inner">
+    <div class="text">
+      @if (showroomName) {
+        <p class="name">{{ showroomName }}</p>
+      }
+      <h1 class="title">{{ t.title }}</h1>
+      <p class="subtitle">{{ t.subtitle }}</p>
+    </div>
+
+    <div class="controls">
+      <div class="languages" role="group" [attr.aria-label]="t.languageLabel">
+        @for (option of languages; track option.code) {
+          <button
+            type="button"
+            [attr.lang]="option.code"
+            [class.active]="option.code === lang"
+            [attr.aria-pressed]="option.code === lang"
+            (click)="selectLanguage(option.code)">
+            {{ option.label }}
+          </button>
+        }
+      </div>
+
+      <button type="button" class="lights" (click)="onToggleNight()">
+        <fa-icon [icon]="night ? faLightbulb : faMoon"></fa-icon>
+        {{ night ? t.lightsOn : t.lightsOff }}
+      </button>
+    </div>
+  </div>
+</header>

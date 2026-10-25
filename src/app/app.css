@@ -1,0 +1,84 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* Search, price and sort side by side, wrapping on small screens */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* min-width: 0 lets the boxes shrink on small screens instead of overflowing */
+.toolbar > * {
+  min-width: 0;
+}
+
+.search {
+  flex: 1 1 280px;
+}
+
+.types {
+  margin-top: 14px;
+}
+
+.results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 40px;
+  margin: 16px 0 20px;
+}
+
+.count {
+  margin: 0;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.reset {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background: var(--accent-soft);
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.empty {
+  margin: 48px 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 0 16px 48px;
+  }
+
+  .toolbar > * {
+    flex: 1 1 100%;
+  }
+
+  .car-grid {
+    gap: 16px;
+  }
+}

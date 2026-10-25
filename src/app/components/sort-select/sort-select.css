@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+select {
+  cursor: pointer;
+  padding-right: 4px;
+}
+
+@media (max-width: 600px) {
+  select {
+    flex: 1;
+  }
+}

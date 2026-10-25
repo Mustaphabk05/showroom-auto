@@ -1,0 +1,104 @@
+:host {
+  display: block;
+}
+
+.footer {
+  margin-top: 32px;
+  background: var(--header-bg);
+  color: var(--on-header);
+  border-top: 2px solid var(--gold);
+  transition: background-color 0.4s;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+
+.name {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.tagline {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--on-header-muted);
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.column p {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 10px;
+  color: var(--on-header-muted);
+  line-height: 1.6;
+}
+
+.time {
+  white-space: nowrap;
+}
+
+.icon {
+  margin-top: 2px;
+  color: var(--gold);
+}
+
+a {
+  color: var(--on-header);
+  text-decoration: none;
+  border-bottom: 1px solid var(--on-header-line);
+}
+
+a:hover {
+  border-bottom-color: var(--gold);
+}
+
+.legal {
+  width: min(1152px, 100% - 48px);
+  margin: 0 auto;
+  padding: 18px 0 28px;
+  border-top: 1px solid var(--on-header-line);
+  font-size: 0.85rem;
+  color: var(--on-header-muted);
+}
+
+/* Arabic letters are joined: no letter spacing on the small titles */
+:host-context([lang='ar']) h2 {
+  letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 36px 16px 24px;
+  }
+
+  .legal {
+    width: calc(100% - 32px);
+    padding: 16px 0 24px;
+  }
+}

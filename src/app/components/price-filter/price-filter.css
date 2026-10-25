@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+input {
+  width: 8ch;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide the small up/down arrows of number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.dash,
+.unit {
+  color: var(--muted);
+}
+
+.error {
+  margin: 6px 0 0;
+  margin-inline-start: 16px;
+  font-size: 0.875rem;
+  color: var(--warning);
+}
+
+@media (max-width: 600px) {
+  input {
+    flex: 1;
+  }
+}

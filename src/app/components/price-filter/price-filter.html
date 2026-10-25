@@ -1,0 +1,35 @@
+<div class="control" role="group" aria-labelledby="price-label">
+  <span id="price-label" class="control-label">{{ t.price }}</span>
+
+  <input
+    type="number"
+    inputmode="numeric"
+    step="10000"
+    [attr.aria-label]="t.minPrice"
+    [placeholder]="t.minPlaceholder"
+    [min]="lowest"
+    [max]="highest"
+    #minInput
+    [value]="min ?? ''"
+    (input)="onMinChange(minInput.value)">
+
+  <span class="dash" aria-hidden="true">–</span>
+
+  <input
+    type="number"
+    inputmode="numeric"
+    step="10000"
+    [attr.aria-label]="t.maxPrice"
+    [placeholder]="t.maxPlaceholder"
+    [min]="lowest"
+    [max]="highest"
+    #maxInput
+    [value]="max ?? ''"
+    (input)="onMaxChange(maxInput.value)">
+
+  <span class="unit">{{ t.currency }}</span>
+</div>
+
+@if (isInvalid) {
+  <p class="error" role="alert">{{ t.priceError }}</p>
+}

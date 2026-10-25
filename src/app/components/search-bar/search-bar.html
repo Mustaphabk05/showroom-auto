@@ -1,0 +1,12 @@
+<label class="control" for="car-search">
+  <fa-icon [icon]="faMagnifyingGlass" class="icon"></fa-icon>
+  <span class="control-label">{{ t.search }}</span>
+  <input
+    id="car-search"
+    type="search"
+    [placeholder]="t.searchPlaceholder"
+    autocomplete="off"
+    #searchInput
+    [value]="term"
+    (input)="onType(searchInput.value)">
+</label>

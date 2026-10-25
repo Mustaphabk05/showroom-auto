@@ -1,0 +1,23 @@
+<div class="chips" role="group" [attr.aria-label]="t.bodyTypeLabel">
+  <button
+    type="button"
+    class="chip"
+    [class.active]="selected === null"
+    [attr.aria-pressed]="selected === null"
+    (click)="select(null)">
+    {{ t.allTypes }} <span class="count">{{ total }}</span>
+  </button>
+
+  @for (type of types; track type) {
+    <!-- A type with 0 matching cars is disabled, unless it is the one selected -->
+    <button
+      type="button"
+      class="chip"
+      [class.active]="selected === type"
+      [attr.aria-pressed]="selected === type"
+      [disabled]="counts[type] === 0 && selected !== type"
+      (click)="select(type)">
+      {{ t.bodyTypes[type] }} <span class="count">{{ counts[type] }}</span>
+    </button>
+  }
+</div>

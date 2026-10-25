@@ -1,0 +1,10 @@
+<label class="control" for="car-sort">
+  <span class="control-label">{{ t.sortBy }}</span>
+  <select id="car-sort" #sortInput (change)="onChange(sortInput.value)">
+    @for (option of options; track option) {
+      <option [value]="option" [selected]="option === sortBy">
+        {{ t.sort[option] }}
+      </option>
+    }
+  </select>
+</label>

@@ -1,0 +1,43 @@
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      <p class="name">{{ showroom.name }}</p>
+      <p class="tagline">{{ t.title }}</p>
+    </div>
+
+    <div class="column">
+      <h2>{{ t.footerVisit }}</h2>
+      <p>
+        <fa-icon [icon]="faLocationDot" class="icon"></fa-icon>
+        <span dir="ltr">{{ showroom.address }}</span>
+      </p>
+    </div>
+
+    <div class="column">
+      <h2>{{ t.footerHours }}</h2>
+      <p>
+        <fa-icon [icon]="faClock" class="icon"></fa-icon>
+        <span>
+          {{ t.hoursWeek }}
+          <!-- the time stays left-to-right and on one line, even in Arabic -->
+          <span class="time" dir="ltr">{{ t.hoursTime }}</span><br>
+          {{ t.hoursSunday }}
+        </span>
+      </p>
+    </div>
+
+    <div class="column">
+      <h2>{{ t.footerContact }}</h2>
+      <p>
+        <fa-icon [icon]="faPhone" class="icon"></fa-icon>
+        <a [href]="phoneLink" dir="ltr">{{ showroom.phone }}</a>
+      </p>
+      <p>
+        <fa-icon [icon]="faCommentDots" class="icon"></fa-icon>
+        <a [href]="whatsappLink" target="_blank" rel="noopener">WhatsApp</a>
+      </p>
+    </div>
+  </div>
+
+  <p class="legal">© {{ year }} {{ showroom.name }}. {{ t.rights }}</p>
+</footer>

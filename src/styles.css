@@ -1,0 +1,138 @@
+/* Global styles: colors and fonts are defined once here and reused by every component */
+:root {
+  /* ---- Day: luxury dealer ---- */
+  --bg: #f6f3ee;          /* warm ivory */
+  --surface: #ffffff;
+  --photo-bg: #ffffff;    /* some photos have a white background, so the frame matches it */
+  --ink: #14213d;         /* deep navy */
+  --muted: #6b6f7b;
+  --line: #e6dfd3;
+  --accent: #14213d;      /* buttons, links, focus */
+  --accent-soft: rgba(20, 33, 61, 0.12);
+  --on-accent: #ffffff;
+  --gold: #b08d57;        /* thin details only: lines, hover, highlights */
+  --gold-text: #86642f;   /* darker gold, readable for small text */
+  --warning: #9a5b00;
+  --stamp: #b3261e;
+  --card-glow: 0 1px 2px rgba(20, 33, 61, 0.04), 0 12px 32px -16px rgba(20, 33, 61, 0.18);
+
+  --header-bg: #14213d;
+  --on-header: #ffffff;
+  --on-header-muted: #c3c8d4;
+  --on-header-line: rgba(255, 255, 255, 0.22);
+
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  color-scheme: light;
+}
+
+/* ---- Night: the room goes dark, each car stays lit like under a spotlight.
+   The photo frames stay white on purpose: 10 of the 16 photos have a white
+   background, so a dark frame would show white rectangles. ---- */
+.shell.night {
+  --bg: #0b1220;
+  --surface: #131c2e;
+  --ink: #ece6db;         /* ivory text */
+  --muted: #a39e94;
+  --line: #26324a;
+  --accent: #c9a96e;      /* gold, like warm headlights */
+  --accent-soft: rgba(201, 169, 110, 0.22);
+  --on-accent: #0b1220;
+  --gold: #c9a96e;
+  --gold-text: #c9a96e;
+  --warning: #e9a86a;
+  --card-glow: 0 18px 50px -18px rgba(201, 169, 110, 0.4);
+
+  --header-bg: #070c16;
+
+  color-scheme: dark;
+}
+
+/* The wrapper around the whole app (see app.html): it carries the theme colors */
+.shell {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* Arabic letters are joined: extra letter spacing would break them apart */
+.shell[lang='ar'] h1,
+.shell[lang='ar'] h2,
+.shell[lang='ar'] .stamp {
+  letter-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Shared look for the search, price and sort boxes.
+   It is global so every component can use the class "control". */
+.control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.control:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.control-label {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.control input,
+.control select {
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+}
+
+.control input::placeholder {
+  color: var(--muted);
+}

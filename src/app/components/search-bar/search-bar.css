@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.control {
+  cursor: text;
+}
+
+.icon {
+  color: var(--muted);
+}
+
+input {
+  flex: 1;
+  width: 0; /* a search input has a built-in minimum width; this removes it */
+}

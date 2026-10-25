@@ -1,0 +1,77 @@
+<!-- The whole page: language, direction (Arabic = right to left) and night mode
+     are set here, by the parent, and the CSS reacts to them. -->
+<div class="shell" [class.night]="night" [attr.lang]="lang" [attr.dir]="t.dir">
+  <app-head-bar
+    [t]="t"
+    [lang]="lang"
+    [night]="night"
+    [showroomName]="showroom.name"
+    (langChange)="changeLanguage($event)"
+    (nightToggle)="toggleNight()">
+  </app-head-bar>
+  
+  <main class="page">
+    <section class="toolbar" [attr.aria-label]="t.search">
+      <app-search-bar
+        class="search"
+        [t]="t"
+        [term]="searchTerm"
+        (termChange)="onSearch($event)">
+      </app-search-bar>
+  
+      <app-price-filter
+        [t]="t"
+        [min]="minPrice"
+        [max]="maxPrice"
+        [lowest]="lowestPrice"
+        [highest]="highestPrice"
+        (priceChange)="onPriceChange($event)">
+      </app-price-filter>
+  
+      <app-sort-select
+        [t]="t"
+        [sortBy]="sortBy"
+        (sortChange)="onSortChange($event)">
+      </app-sort-select>
+    </section>
+
+    <app-body-type-filter
+      class="types"
+      [t]="t"
+      [selected]="selectedType"
+      [counts]="typeCounts"
+      [total]="typeTotal"
+      (typeChange)="onTypeChange($event)">
+    </app-body-type-filter>
+  
+    <div class="results-bar">
+      <p class="count" aria-live="polite">
+        {{ t.results(filteredAutos.length, autoList.length) }}
+      </p>
+      @if (hasActiveFilters) {
+        <button type="button" class="reset" (click)="resetFilters()">{{ t.resetFilters }}</button>
+      }
+    </div>
+  
+    @if (filteredAutos.length > 0) {
+      <section class="car-grid">
+        @for (auto of filteredAutos; track auto.id) {
+          <app-car-card [auto]="auto" [t]="t" (viewDetails)="openDetails($event)"></app-car-card>
+        }
+      </section>
+    } @else {
+      <p class="empty">{{ t.noResults }}</p>
+    }
+  </main>
+
+  <app-footer [t]="t" [showroom]="showroom"></app-footer>
+  
+  @if (selectedCar) {
+    <app-car-detail
+      [auto]="selectedCar"
+      [t]="t"
+      [whatsappNumber]="whatsappNumber"
+      (closed)="closeDetails()">
+    </app-car-detail>
+  }
+</div>

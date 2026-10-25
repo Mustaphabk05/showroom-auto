@@ -1,0 +1,45 @@
+<div class="backdrop" (click)="onBackdropClick($event)">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="car-detail-title">
+    <button #closeButton type="button" class="close" (click)="close()" [attr.aria-label]="t.closeDetails">
+      ✕
+    </button>
+
+    <div class="photo" [class.sold]="auto.availability === 0">
+      <img [src]="'images/' + auto.photo" [alt]="auto.brand + ' ' + auto.model">
+      @if (auto.availability === 0) {
+        <span class="stamp">{{ t.soldStamp }}</span>
+      }
+    </div>
+
+    <div class="content">
+      <p class="brand">{{ auto.brand }}</p>
+      <h2 id="car-detail-title">{{ auto.model }}</h2>
+
+      <dl class="specs">
+        <div>
+          <dt>{{ t.power }}</dt>
+          <dd>{{ auto.power }} {{ t.powerUnit }}</dd>
+        </div>
+        <div>
+          <dt>{{ t.price }}</dt>
+          <dd>{{ t.formatPrice(auto.price) }}</dd>
+        </div>
+        <div>
+          <dt>{{ t.stockLabel }}</dt>
+          <dd>{{ auto.availability === 0 ? t.soldOut : auto.availability }}</dd>
+        </div>
+      </dl>
+
+      <!-- The descriptions only exist in English, so we say it and keep them left-to-right -->
+      @if (t.englishOnlyNote) {
+        <p class="note">{{ t.englishOnlyNote }}</p>
+      }
+      <p class="description" lang="en" dir="ltr">{{ auto.description }}</p>
+
+      <a class="whatsapp" [href]="whatsappLink" target="_blank" rel="noopener">
+        <fa-icon [icon]="faCommentDots"></fa-icon>
+        {{ t.whatsappButton }}
+      </a>
+    </div>
+  </div>
+</div>
